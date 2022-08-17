@@ -5,9 +5,7 @@ const init = { num: 1 }
 export default (state = init, action) => {
   switch (action.type) {
     case CHANGE_MESSAGE:
-      return Object.assign({}, state, {
-        num: action.payload.num
-      })
+      return { ...state, num: action.payload.num }
     default:
       return state
   }

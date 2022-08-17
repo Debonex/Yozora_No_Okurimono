@@ -2,7 +2,7 @@ import React from 'react'
 import LoadView from '../containers/LoadView'
 import Top from '../containers/Top'
 
-export default ({ chapter }) => {
+export default function ({ chapter }) {
   switch (chapter) {
     case 'load':
       return <LoadView />

@@ -4,8 +4,9 @@
   "env": {
     "browser": true
   },
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "ecmaVersion": 2017
+    "ecmaVersion": "latest"
   },
   "rules": {
     "no-console": 0,
@@ -22,7 +23,10 @@
     "no-trailing-spaces": 0,
     "jsx-a11y/click-events-have-key-events": 0,
     "jsx-a11y/no-static-element-interactions": 0,
-    "react/no-danger": 0,
-    "arrow-body-style": 0
+    "arrow-body-style": 0,
+    "max-len": 0,
+    "func-names": 0,
+    "default-param-last": 0,
+    "react/no-danger": 0
   }
 }

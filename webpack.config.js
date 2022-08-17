@@ -1,4 +1,5 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
 const mode = process.env.MODE
 
 module.exports = {
@@ -7,8 +8,8 @@ module.exports = {
     app: './src/scripts/app.js',
   },
   output: {
-    path: `${ __dirname }/public/scripts`,
-    filename: 'app.min.js'
+    path: `${__dirname}/public/scripts`,
+    filename: 'app.min.js',
   },
   module: {
     rules: [
@@ -19,27 +20,18 @@ module.exports = {
             {
               loader: 'css-loader',
               options: {
-                sourceMap: (mode === 'development')
-              }
+                sourceMap: mode === 'development',
+              },
             },
             'sass-loader',
-            'import-glob-loader'
-          ]
-        })
+            'import-glob-loader',
+          ],
+        }),
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: [
-          'babel-loader',
-          {
-            loader: 'eslint-loader',
-            options: {
-              fix: false,
-              failOnError: true
-            }
-          }
-        ]
+        use: ['babel-loader'],
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
@@ -48,19 +40,23 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 51200,
-              name: '../images/other/[name].[ext]'
-            }
-          }
-        ]
-      }
-    ]
+              name: '../images/other/[name].[ext]',
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
-    new ExtractTextPlugin('../stylesheets/style.css')
+    new ExtractTextPlugin('../stylesheets/style.css'),
+    new ESLintPlugin({
+      fix: true,
+    }),
   ],
   devServer: {
-    contentBase: `${ __dirname }/public`,
+    historyApiFallback: true,
+    contentBase: `${__dirname}/public`,
     port: 3000,
-    open: true
-  }
+    open: true,
+  },
 }

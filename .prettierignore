@@ -1,3 +1,6 @@
 node_modules/
 webpack.config.js
 public/
+.babelrc
+yarn.lock
+yarn-error.log

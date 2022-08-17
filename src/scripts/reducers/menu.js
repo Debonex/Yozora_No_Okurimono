@@ -8,15 +8,17 @@ const init = {
 export default (state = init, action) => {
   switch (action.type) {
     case OPEN_MENU:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         effect: 'stop',
-        menu: true
-      })
+        menu: true 
+      }
     case CLOSE_MENU:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         effect: 'start',
-        menu: false
-      })
+        menu: false 
+      }
     default:
       return state
   }
